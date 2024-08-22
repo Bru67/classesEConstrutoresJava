@@ -1,80 +1,46 @@
 import java.util.Scanner;
 
-public class Controle {
-    //Atributos:
-    public String marca; //ex: Xbox ou Playstation
-    public String cor;
-    public int ano;
-    public String botoes; //estilos de botão
-    public String estiloConexaoConsole; //ex: com fio ou sem fio
-    public boolean ligado = false;
-    public boolean botaoMenu = false;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Qual a marca do seu controle?? ");
+        String marca = sc.nextLine();
+        System.out.println("Qual o tipo de conexão com o Console (ex: com ou sem fio)?? ");
+        String estiloConexaoConsole = sc.nextLine();
+        System.out.println("Qual é o modelo dos botões do seu controle?? ");
+        String botoes = sc.nextLine();
+        System.out.println("Qual é a cor do seu controle?? ");
+        String cor = sc.nextLine();
+        System.out.println("Qual é o ano de fabricação do seu controle?? ");
+        int ano = sc.nextInt();
 
-    //Construtor para input
-    public Controle(String marca, String estiloConexaoConsole, String botoes, String cor, int ano){
-        this.marca = marca;
-        this.estiloConexaoConsole = estiloConexaoConsole;
-        this.botoes = botoes;
-        this.cor = cor;
-        this.ano = ano;
-    }
-    //Construtor nulo/vazio
-    public Controle(){
-        this.marca = null;
-        this.estiloConexaoConsole = null;
-        this.botoes = null;
-    }
+        //Construtor com input do usuário
+        Controle controle = new Controle(marca, estiloConexaoConsole, botoes, cor, ano);
+        System.out.println(controle);
 
-    //Construtor com valores pré-estabelecidos
-    public Controle(String marca, String botoes){
-        this.marca = "Nintendo";
-        this.estiloConexaoConsole = "Com fio";
-        this.botoes = "Setas";
-    }
+        controle.ligarControle();
+        controle.conectadoAoConsole();
+        controle.botaoMenu();
+        controle.comandoMover();
+        controle.acoes();
+        controle.desligar();
 
-    //Métodos
-    public void comandoMover(){
-        //up, down, left, right -> cursor/personagem
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Qual ação deseja realizar??\n 1 - Up\n 2 - Right\n 3 - Down\n 4 - Left");
-        int acao = scanner.nextInt();
-        System.out.println("Voçê realizou a ação " + acao);
-    }
-    public void ligarControle(){
-        //press -> turn on
-        ligado = true;
-        System.out.println("Seu controle " + marca + " está ligado! Seja bem-vindo! ");
-    }
-    public void desligar(){
-        ligado = false;
-        System.out.println("Desligando! Até a próxima!");
-    }
-    public void conectadoAoConsole(){
-        if (ligado){
-            System.out.println("Seu controle está conectado com o Console! É hora de jogar!");
-        }
-    }
+        //Construtor vazio e alterado
+        Controle controle2 = new Controle();
 
-    public void botaoMenu(){
-        //abrir menu
-        botaoMenu = true;
-        System.out.println("----------MENU----------\n" +
-                "- Configurações de console\n" +
-                "- Configurações de Usuário\n" +
-                "- Controle de jogos\n" +
-                "- Sobre\n" +
-                "- Central de Ajuda\n" +
-                "------------------------");
-    }
-    public void acoes(){
-        //pular/selecionar; atacar/voltar etc..
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("""
-                Qual ação deseja realizar??
-                 1 - Selecionar
-                 2 - Voltar""");
-        int acao = scanner.nextInt();
-        System.out.println("Voçê realizou a ação " + acao);
-    }
+        controle2.marca = "Playstation";
+        controle2.estiloConexaoConsole = "Sem fio";
+        controle2.botoes = "Quadrado, Triângulo, Circulo e Xis";
+        controle2.ligarControle();
+        controle2.desligar();
 
+        //Construtor pré-estabelecido
+        Controle controle3 = new Controle("Nintendo", "Setas");
+
+        System.out.println(controle3.estiloConexaoConsole);
+        controle3.ligarControle();
+        controle3.desligar();
+
+
+    }
 }
